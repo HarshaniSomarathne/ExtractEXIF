@@ -1,5 +1,6 @@
 import exifread
-from sys import argv
+import optparse
+import sys
 
 
 
@@ -17,14 +18,18 @@ def getData(tags, key):
 
 
 def main():
-    """main function"""
-    #get the image path
-    script, image_path = argv
+    """get EXIF info from images according to the key value"""
+    optparser = optparse.OptionParser()
+    optparser.add_option("-f", "--filename", dest="filename", default="", help="the location of input image")
+    optparser.add_option("-k", "--key", dest="key", default="", help="the EXIF key")
+    (opts, _) = optparser.parse_args()
+    
     #open image
-    image = openImage(image_path)
+    image = openImage(opts.filename)
     #get image tags
     tags = exifread.process_file(image)
-    print getData(tags, "GPS")
+    #print EXIF info according to the key
+    getData(tags, opts.key)
 
 
 
