@@ -21,7 +21,7 @@ def main():
     """get EXIF info from images according to the key value"""
     optparser = optparse.OptionParser()
     optparser.add_option("-f", "--filename", dest="filename", default="", help="the location of input image")
-    optparser.add_option("-k", "--key", dest="key", default="", help="the EXIF key")
+    optparser.add_option("-k", "--key", dest="key", default="GPS", help="the EXIF key")
     (opts, _) = optparser.parse_args()
     
     #open image
